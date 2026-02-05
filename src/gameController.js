@@ -51,6 +51,38 @@ export default function createGame() {
         player.gameboard.missedAttacks = [];
     }
 
+    function randomPlacement(player) {
+        clearBoard(player);
+
+        const shipLengths = [3, 2];
+
+        shipLengths.forEach(length => {
+            let placed = false;
+
+            while (!placed) {
+                const x = Math.floor(Math.random() * 10);
+                const y = Math.floor(Math.random() * 10);
+                const horizontal = Math.random() > 0.5;
+
+                const coordinates = [];
+
+                for (let i = 0; i < length; i++) {
+                    const coord = horizontal ? [x, y + i] : [x + i, y];
+                    if (coord[0] > 9 || coord[1] > 9) {
+                        coordinates.length = 0;
+                        break;
+                    }
+                    coordinates.push(coord);
+                }
+
+                if (coordinates.length === length) {
+                    player.gameboard.placeShip(length, coordinates);
+                    placed = true;
+                }
+            }
+        });
+    }
+
     setupBoards();
 
     return {
@@ -58,7 +90,7 @@ export default function createGame() {
         computer, 
         playTurn, 
         computerMove, 
+        randomPlacement, 
         isGameOver: () => gameOver, 
-        getCurrentPlayer: () => currentPlayer,
     };
 };
