@@ -2,6 +2,7 @@ export default function domController(game) {
     const playerBoard = document.getElementById('player-board');
     const enemyBoard = document.getElementById('enemy-board');
     const status = document.getElementById('status');
+    const randomizeBtn = document.getElementById('randomize');
 
     function renderBoard(gameboard, element, isEnemy = false) {
         element.innerHTML = '';
@@ -13,7 +14,23 @@ export default function domController(game) {
                 cell.dataset.x = x;
                 cell.dataset.y = y;
 
-                if (isEnemy) {
+                const shipHit = gameboard.ships.some(obj => 
+                    obj.coordinates.some(
+                        c => 
+                            c[0] === x && 
+                        c[1] === y && 
+                        obj.ship.hits > 0
+                    )
+                );
+
+                const miss = gameboard.missedAttacks.some(
+                    m => m[0] === x && m[1] === y
+                );
+
+                if (shipHit) cell.classList.add('hit');
+                if (miss) cell.classList.add('miss');
+
+                if (isEnemy && !game.isGameOver()) {
                     cell.addEventListener('click', () => {
                         game.playTurn([x, y]);
                         update();
@@ -39,5 +56,11 @@ export default function domController(game) {
         }
     }
 
+    randomizeBtn.addEventListener('click', () => {
+        game.randomPlacement(game.human);
+        game.randomPlacement(game.computer);
+        update();
+    });
+
     update();
-}
+};
