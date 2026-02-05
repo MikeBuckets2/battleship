@@ -9,11 +9,7 @@ export default function createGame() {
     let gameOver = false;
 
     function setupBoards() {
-        human.gameboard.placeShip(3, [[0,0], [0,1], [0,2]]);
-        human.gameboard.placeShip(2, [[4,4], [5,4]]);
 
-        computer.gameboard.placeShip(3, [[2,2], [2,3], [2,4]]);
-        computer.gameboard.placeShip(2, [[6,6], [6,7]]);
     }
 
     function switchTurns() {
@@ -48,6 +44,11 @@ export default function createGame() {
         );
 
         playTurn(move);
+    }
+
+    function clearBoard(player) {
+        player.gameboard.ships = [];
+        player.gameboard.missedAttacks = [];
     }
 
     setupBoards();
