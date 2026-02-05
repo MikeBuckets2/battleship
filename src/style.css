@@ -2,7 +2,11 @@
     width: 25px;
     height: 25px;
     border: 1px solid black;
-    display: inline-block;
+    box-sizing: border-box;
+}
+
+.ship {
+    background-color: #7aa7c7;
 }
 
 .hit {
@@ -15,6 +19,13 @@
 
 #player-board, 
 #enemy-board {
-    width: 260px;
+    display: grid;
+    grid-template-columns: repeat(10, 25px);
+    grid-template-rows: repeat(10, 25px);
+    width: max-content;
     margin-bottom: 10px;
+}
+
+#enemy-board .cell {
+    cursor: pointer;
 }
