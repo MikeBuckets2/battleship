@@ -1,3 +1,4 @@
+import './style.css';
 import createGame from './gameController.js';
 import domController from './domController.js';
 
