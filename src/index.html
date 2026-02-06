@@ -2,19 +2,48 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Battleship</title>
   </head>
   <body>
     <h1>Battleship</h1>
 
-    <button id="randomize">Randomize Ships</button>
+    <div class="controls">
+      <label>
+        Mode
+        <select id="mode">
+          <option value="vs-computer">Vs Computer</option>
+          <option value="vs-human">2 Player</option>
+        </select>
+      </label>
 
-    <h2>Your Board</h2>
-    <div id="player-board"></div>
-
-    <h2>Enemy Board</h2>
-    <div id="enemy-board"></div>
+      <button id="randomize">Randomize Ships</button>
+      <button id="clear">Clear Placement</button>
+      <button id="rotate">Rotate: horizontal</button>
+      <button id="start">Start Battle</button>
+    </div>
 
     <p id="status"></p>
+
+    <div id="ship-dock" class="ship-dock"></div>
+
+    <div class="boards">
+      <div class="board-wrapper">
+        <h2 id="player-title">Your Board</h2>
+        <div id="player-board"></div>
+      </div>
+
+      <div class="board-wrapper">
+        <h2 id="enemy-title">Enemy Board</h2>
+        <div id="enemy-board"></div>
+      </div>
+    </div>
+
+    <div id="overlay" class="overlay hidden">
+      <div class="overlay-box">
+        <p id="overlay-text"></p>
+        <button id="overlay-continue">Continue</button>
+      </div>
+    </div>
   </body>
 </html>

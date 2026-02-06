@@ -1,31 +1,139 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 24px;
+  background: #f5f7fa;
+  color: #1f2933;
+}
+
+h1 {
+  margin-bottom: 8px;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.controls select,
+.controls button {
+  padding: 6px 10px;
+  border: 1px solid #1f2933;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+#status {
+  margin: 12px 0 16px;
+  font-weight: 600;
+}
+
+.ship-dock {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.ship-dock.hidden {
+  display: none;
+}
+
+.ship-piece {
+  display: flex;
+  gap: 2px;
+  padding: 4px 6px;
+  border: 1px solid #aab3bd;
+  background: #ffffff;
+  cursor: grab;
+}
+
+.ship-segment {
+  width: 18px;
+  height: 18px;
+  background: #7aa7c7;
+}
+
+.boards {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.board-wrapper h2 {
+  margin-bottom: 8px;
+}
+
+#player-board,
+#enemy-board {
+  display: grid;
+  grid-template-columns: repeat(10, 28px);
+  grid-template-rows: repeat(10, 28px);
+  gap: 2px;
+  width: max-content;
+  background: #dde3ea;
+  padding: 8px;
+  border-radius: 6px;
+}
+
 .cell {
-    width: 25px;
-    height: 25px;
-    border: 1px solid black;
-    box-sizing: border-box;
+  width: 28px;
+  height: 28px;
+  background: #ffffff;
+  border: 1px solid #aab3bd;
+  box-sizing: border-box;
 }
 
 .ship {
-    background-color: #7aa7c7;
+  background: #7aa7c7;
 }
 
 .hit {
-    background-color: red;
+  background: #e74c3c;
 }
 
 .miss {
-    background-color: lightgray;
+  background: #cbd2d9;
 }
 
-#player-board, 
-#enemy-board {
-    display: grid;
-    grid-template-columns: repeat(10, 25px);
-    grid-template-rows: repeat(10, 25px);
-    width: max-content;
-    margin-bottom: 10px;
+.disabled {
+  opacity: 0.6;
+  pointer-events: none;
 }
 
-#enemy-board .cell {
-    cursor: pointer;
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay.hidden {
+  display: none;
+}
+
+.overlay-box {
+  background: #ffffff;
+  padding: 20px 24px;
+  border-radius: 6px;
+  text-align: center;
+  max-width: 320px;
+}
+
+.overlay-box button {
+  margin-top: 12px;
+  padding: 6px 12px;
+  border: 1px solid #1f2933;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+@media (max-width: 720px) {
+  .boards {
+    gap: 20px;
+  }
 }

@@ -19,6 +19,7 @@ export default class Gameboard {
   }
 
   placeShip(length, coordinates) {
+    if (coordinates.length !== length) return false;
     if (!this.canPlace(coordinates)) return false;
     const ship = new Ship(length);
     this.ships.push({ ship, coordinates });
